@@ -138,7 +138,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(10);
+  setTimer(1,10);
   while (1)
   {
 	  if (buffer_flag == 1) {

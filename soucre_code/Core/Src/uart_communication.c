@@ -46,7 +46,7 @@ void command_parser_fsm() {
 			if (strcmp((const char *)buffer, userRequest) == 0) {
 					ADC_value = HAL_ADC_GetValue(&hadc1);
 					status_ACK = SEND_ADC;
-					setTimer1(10);
+					setTimer(1,10);
 					ERROR_CODE_G = NORMAL;
 			} else {
 				status_ACK = ERROR_G;
@@ -77,11 +77,11 @@ void uart_communication_fsm() {
 					sprintf(str,"!ADC=%lu#\r\n", ADC_value), 1000);
 
 				reset_buffer();
-				setTimer1(TIME_OUT_ACK);
+				setTimer(1,TIME_OUT_ACK);
 				status_ACK = WAIT_ACK;
 			break;
 		case WAIT_ACK:
-			if (timer1_flag == 1) {
+			if (timer_flags[0] == 1) {
 				try_times++;
 				HAL_UART_Transmit(&huart2, (uint8_t*)str,
 					sprintf(str, "!ADC=%lu#\r\n", ADC_value), 1000);
@@ -90,7 +90,7 @@ void uart_communication_fsm() {
 						sprintf(str, "%s","\r\nREACHED MAXIMUM TRY TIMES\r\n"), 1000);
 					status_ACK = END_SEND;
 					return;
-				} else setTimer1(TIME_OUT_ACK);
+				} else setTimer(1,TIME_OUT_ACK);
 				reset_buffer();
 			}
 			break;

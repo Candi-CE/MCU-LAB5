@@ -70,7 +70,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	if(huart->Instance == USART1){
 		// process recevied character
 		if (index_buffer >= MAX_BUFFER_SIZE) {
-			ERROR_CODE_G = BUFFER_IS_FULL;
+			ERROR_CODE_0 = BUFFER_IS_FULL;
 			buffer_flag = 1;
 			HAL_UART_Receive_IT(&huart2, &temp, 1);
 			return;

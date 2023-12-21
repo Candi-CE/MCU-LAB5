@@ -8,11 +8,11 @@
 #ifndef INC_UART_COMMUNICATION_H_
 #define INC_UART_COMMUNICATION_H_
 
-#define SLEEP_MODE					1
+#define SLEEP						1
 #define	SEND_ADC 					2
-#define WAIT_ACK					3
+#define WAITING_ACK					3
 #define END_SEND 					4
-#define MAX_TRY_TIMES				5
+#define MAX_TIMES_TO_TRY			5
 #define ERROR_G						6
 #define TIME_OUT_ACK				3000 //if user isn`t send again, wait user to respone within 3s.
 #define NORMAL						9
@@ -25,7 +25,7 @@ extern uint8_t temp;
 extern uint8_t buffer [MAX_BUFFER_SIZE];
 extern uint8_t buffer_flag;
 
-extern uint8_t ERROR_CODE_G;
+extern uint8_t ERROR_CODE_0;
 
 extern int status_ACK;
 extern const char userRequest[];
@@ -37,5 +37,5 @@ void uart_communication_fsm();
 
 void error_hanlder();
 
-void System_Go_To_Sleep();
+void Go_To_Sleep();
 #endif /* INC_UART_COMMUNICATION_H_ */
